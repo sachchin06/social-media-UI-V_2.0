@@ -1,0 +1,68 @@
+.navbar {
+    
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 10px 20px;
+    height: 40px;
+    border-bottom: 1px solid lightgray;
+
+    //adding scroll 
+    position: sticky;
+    top: 0;
+    background-color: white;
+
+    &::-webkit-scrollbar {
+            display: none;
+        }
+    
+    .left {
+
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        span {
+            font-weight: bold;
+            font-size: 20px;
+            color: rgb(62, 174, 62);
+        }
+        .search {
+
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid lightgray;
+            padding: 4px;
+            border-radius: 5px;
+
+            input {
+                border: none;
+                outline: none;
+                width: 300px;
+            }
+        }
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            img {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                object-fit: cover;
+                
+            }
+
+            span {
+                font-weight: 500;
+            }
+        }
+    }
+}
