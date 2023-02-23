@@ -1,0 +1,78 @@
+.stories {
+  display: flex;
+  height: 150px;
+  gap: 5px;
+  // background-color: aquamarine;
+ 
+
+  .story {
+    height: inherit;
+    width: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    span {
+      font-size: 12px;
+      font-weight: 600;
+      position: absolute;
+      bottom: 12px;
+      left: 10px;
+      color: white;
+    }
+
+    // button {
+    //     width: 25px;
+    //     height: 25px;
+    //     position: absolute;
+    //     bottom: 10px;
+    //     left: 10px;
+    //     background-color: rgb(113, 198, 220);
+    //     border-radius: 50%;
+    //     border: none;
+    //     color: white;
+    //     cursor: pointer;
+    //     font-weight: bold;
+    //     font-size: 20px;
+
+    //     span {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0;
+
+    //     }
+
+    // }
+
+    .button-container {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+
+      button {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        color: white;
+        border: none;
+        cursor: pointer;
+        background-color: #0bec4ff1;
+
+        span {
+          font-size: 20px;
+          position: relative;
+          bottom: 0px;
+          left: 0px;
+        }
+      }
+    }
+  }
+}

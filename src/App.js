@@ -9,9 +9,12 @@ import {
   RouterProvider,
   Navigate,
 } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "./context/authContext";
 
 function App() {
-  const currentUser = true;
+  // const currentUser = true;
+  const { currentUser } = useContext(AuthContext);
 
   const ProtectedRoute = ({ children }) => {
     if (!currentUser) {

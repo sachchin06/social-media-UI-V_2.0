@@ -1,0 +1,54 @@
+.post {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .user {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .userInfo{
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            img{
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            span{
+
+            }
+
+            p{
+                
+                color: gray;
+            }
+        }
+    }
+
+    .content{
+        img{
+           
+        }
+
+        p{
+
+        }
+    }
+
+    .action {
+        display: flex;
+        justify-content: space-between;
+        
+        .left{
+            display: flex;
+            gap: 5px;
+        }
+
+        .right {
+
+        }
+    }
+}

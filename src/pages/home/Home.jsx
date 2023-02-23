@@ -1,39 +1,12 @@
 import './home.scss';
+import Posts from '../../components/posts/Posts';
+import Stories from '../../components/stories/Stories';
 
 const Home = () => {
   return (
-    <div>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-      <h3>hello</h3>
-
-
+    <div className='home'>
+      <Stories />
+      <Posts />
     </div>
   )
 }

@@ -1,0 +1,97 @@
+// $themes: (
+//     light: (
+//         textColor: #000,
+//         bg: white,
+//         logo: rgb(0, 139, 39),
+//         bgSoft: #f6f3f3,
+//         textColorSoft: #555,
+//         border: lightgray,
+//     ),
+//     dark: (
+//         textColor: whitesmoke,
+//         bg: #222,
+//         logo: white,
+//         bgSoft: #333,
+//         textColorSoft: lightgray,
+//         border: #444,
+//     ),
+// );
+$lg-textColor: #000;
+$lg-bg: white;
+$lg-logo: rgb(0, 139, 39);
+$lg-bgSoft: #f6f3f3;
+$lg-textColorSoft: #555;
+$lg-border: lightgray;
+
+$dk-textColor: whitesmoke;
+$dk-bg: #222;
+$dk-logo: white;
+$dk-bgSoft: #333;
+$dk-textColorSoft: lightgray;
+$dk-border: #444;
+
+.theme-dark {
+  .navbar {
+    background-color: $dk-bg;
+    color: $dk-textColor;
+    border-bottom: 1px solid $dk-border;
+
+    .left {
+      span {
+        color: $dk-logo;
+      }
+      .search {
+        border: 1px solid $dk-border;
+        input {
+          background-color: transparent;
+          color: $dk-textColor;
+        }
+      }
+    }
+  }
+
+  .leftBar {
+    background-color: $dk-bg;
+    color: $dk-textColor;
+
+    .container {
+      hr {
+        background-color: $dk-border;
+      }
+    }
+  }
+
+  .rightBar {
+    background-color: $dk-bgSoft;
+
+    .container {
+      .item {
+        background-color: $dk-bg;
+        color: $dk-textColor;
+
+        span {
+          color: $dk-textColorSoft;
+        }
+
+        .user {
+          .userInfo {
+            p {
+              color: $dk-textColorSoft;
+
+            }
+
+            span {
+              color: $dk-textColor;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .home {
+      padding: 10px 30px;
+      background-color: $dk-bgSoft; 
+
+  }
+}
