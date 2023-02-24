@@ -1,0 +1,69 @@
+.profile {
+  background-color: #f6f3f3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .images {
+    width: 100%;
+    height: 200px;
+    position: relative;
+
+    .cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .profilePic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      top: 140px;
+    }
+  }
+
+  .info {
+    -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+    box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
+    background-color: white;
+    border-radius: 15px;
+    width: 90%;
+   height: 150px;
+   padding-bottom: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    gap: 5px;
+
+    .address {
+      span {
+        font-size: 12px;
+        color: gray;
+      }
+    }
+
+    button {
+      border: none;
+      color: white;
+      border-radius: 3px;
+      padding: 4px 8px;
+      font-weight: 500;
+      background-color: #5271ff;
+    }
+  }
+
+  .profilePost {
+    width: 90%;
+  }
+}

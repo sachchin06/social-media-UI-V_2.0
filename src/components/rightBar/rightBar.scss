@@ -1,12 +1,22 @@
+@import "../../layout/layout.scss";
+
 .rightBar {
   flex: 3;
-  // background-color: #e7d9d9;
+  background-color: #f6f3f3;
 
   // sticky position
   position: sticky;
   top: 60px;
   height: calc(100vh - 60px);
   overflow: scroll;
+
+  @include mobile {
+    display: none;
+  }
+
+  @include tablet {
+    display: none;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -28,7 +38,7 @@
       -webkit-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
       -moz-box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
       box-shadow: 0px 0px 15px 1px rgba(0, 0, 0, 0.09);
-
+      background-color: white;
       padding: 20px;
 
       span {
@@ -92,17 +102,21 @@
             color: white;
             padding: 4px;
             cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            border-radius: 5px;
 
             &:first-child {
-              background-color: blue;
+              background-color: #5271ff;
             }
 
             &:last-child {
-              background-color: red;
+              background-color: rgb(248, 82, 82);
             }
           }
         }
       }
-    }
+    } 
+
   }
 }

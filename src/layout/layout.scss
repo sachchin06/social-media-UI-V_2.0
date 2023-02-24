@@ -16,12 +16,7 @@
 //         border: #444,
 //     ),
 // );
-$lg-textColor: #000;
-$lg-bg: white;
-$lg-logo: rgb(0, 139, 39);
-$lg-bgSoft: #f6f3f3;
-$lg-textColorSoft: #555;
-$lg-border: lightgray;
+
 
 $dk-textColor: whitesmoke;
 $dk-bg: #222;
@@ -77,7 +72,6 @@ $dk-border: #444;
           .userInfo {
             p {
               color: $dk-textColorSoft;
-
             }
 
             span {
@@ -90,8 +84,85 @@ $dk-border: #444;
   }
 
   .home {
-      padding: 10px 30px;
-      background-color: $dk-bgSoft; 
+    padding: 10px 30px;
+    background-color: $dk-bgSoft;
+  }
 
+  .post {
+    background-color: $dk-bg;
+    color: $dk-textColor;
+
+    .container {
+      .user {
+        .userInfo {
+          .profileImg {
+            span {
+              color: $dk-textColor;
+            }
+          }
+
+          span {
+            color: $dk-textColorSoft;
+          }
+        }
+      }
+    }
+  }
+
+  .comments {
+    input {
+      color: $dk-textColor;
+   
+     
+    }
+  }
+
+        .profile {
+          
+          background-color: $dk-bgSoft;
+
+          .info {
+              -webkit-box-shadow: 0px 0px 15px 1px rgba(174, 153, 153, 0.09);
+              -moz-box-shadow: 0px 0px 15px 1px rgba(211, 195, 195, 0.09);
+              box-shadow: 0px 0px 15px 1px rgba(234, 215, 215, 0.09);
+
+              background-color: $dk-bgSoft;
+
+              span {
+                color: $dk-textColor;
+              }
+                     
+              .address {
+                span {
+                  font-size: 12px;
+                  color: $dk-textColorSoft;
+                }
+              }
+          
+              button {
+                border: none;
+                color: white;
+                border-radius: 3px;
+                padding: 4px 8px;
+                font-weight: 500;
+                background-color: #5271ff;
+              }
+            }
+        }
+}
+
+
+//responsive
+
+
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 820px) {
+    @content;
   }
 }
