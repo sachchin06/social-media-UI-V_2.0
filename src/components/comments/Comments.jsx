@@ -1,52 +1,67 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
-import './comments.scss';
+import { useContext, useRef } from "react";
+import { AuthContext } from "../../context/authContext";
+import "./comments.scss";
+import { useQuery } from "react-query";
+import { makeRequest } from "../../axios";
+import moment from 'moment';
+import { useMutation, useQueryClient } from "react-query";
 
 
-const  Comments = () => {
-const { currentUser } = useContext(AuthContext)
+const Comments = ({ postId }) => {
+  const { currentUser } = useContext(AuthContext);
+  const newCommentRef  = useRef()
+  const queryClient = useQueryClient();
 
-    const comments = [
-        {
-            id: 1,
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut blanditiis reprehenderit  sed, dicta aliquam! Delectus, quia consectetur! Placeat?',
-            name: 'Ram Kumar',
-            userId: 2,
-            profilePic: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600',
+  const { isLoading, error, data } = useQuery(["comments"], () =>
+    makeRequest.get(`/comments/${postId}`).then((res) => {
+      return res.data;
+    })
+  );
 
-        },
-        {
-            id: 2,
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut blanditiis reprehenderit  sed, dicta aliquam! Delectus, quia consectetur! Placeat?',
-            name: 'Ravi Kumar',
-            userId: 3,
-            profilePic: 'https://images.pexels.com/photos/2918513/pexels-photo-2918513.jpeg?auto=compress&cs=tinysrgb&w=600',
+//   console.log(data);
 
-        },
-    ]
-  return (
-    <div className='comments'>
-         <div className="write">
-                <img src={currentUser.profilePic} alt="profile" />
-                <input type="text" placeholder='write a comment' />
-                <button>Send</button>
 
-            </div>
-        {
-           
-            comments.map((comment) => (
-                <div className="comment">
-                    <img src={comment.profilePic} alt="profile" />
-                    <div className="commentInfo">
-                        <span>{comment.name}</span>
-                        <p>{comment.desc}</p>
-                    </div>
-                    <span className='date'>1 hour ago</span>
-                </div>
-            ))
-        }
-    </div>
-  )
+  const addComment =async () => {
+    const newComment = newCommentRef.current.value;
+     mutation.mutate( { description: newComment} );
 }
 
-export default Comments
+  // add post using Mutations
+  const mutation = useMutation(
+    (newComment) => {
+      return makeRequest.post(`/comments/${postId}`, newComment);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["comments"]);
+      },
+    }
+  );
+  
+  return (
+    <div className="comments">
+      <div className="write">
+        <img src={currentUser.profilePic} alt="profile" />
+        <input type="text" ref={newCommentRef} placeholder="write a comment" />
+        <button onClick={addComment}>Send</button>
+      </div>
+      {error
+        ? "Something Went Wrong"
+        : isLoading
+        ? "Loading Comments"
+        : data.map((comment) => (
+            <div key={comment.id} className="comment">
+              <img src={comment.profilePic} alt="profile" />
+              <div className="commentInfo">
+                <span>{comment.name}</span>
+                <p>{comment.description}</p>
+              </div>
+              <span className="date">{moment(comment.createdAt).fromNow()}</span>
+            </div>
+          ))}
+    </div>
+  );
+};
+
+export default Comments;

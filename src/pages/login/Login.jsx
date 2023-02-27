@@ -51,6 +51,8 @@ const handleLogin = async (event) => {
             <input type="password" ref={passwordRef} placeholder='Password' />
             <button>Login</button>
           </form>
+
+          {err && err}
         </div>
       </div>
     </div>

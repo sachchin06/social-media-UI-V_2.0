@@ -13,6 +13,8 @@ import moment from 'moment';
 
 const Post = ({ post }) => {
 
+  
+
   const [commentOpen, setCommentOpen] = useState(false);
 
   const [liked, setLiked] = useState(false);
@@ -61,7 +63,7 @@ const Post = ({ post }) => {
           </div>
         </div>
 
-        {commentOpen && <Comments />}
+        {commentOpen && <Comments postId = {post.id} />}
       </div>
     </div>
   );

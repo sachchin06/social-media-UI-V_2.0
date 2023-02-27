@@ -8,8 +8,6 @@ import { AuthContext } from "../../context/authContext";
 import { useState } from "react";
 
 import { makeRequest } from "../../axios";
-import axios from "axios";
-
 import { useMutation, useQueryClient } from "react-query";
 
 const Share = () => {
