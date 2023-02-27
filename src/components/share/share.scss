@@ -32,8 +32,14 @@
             }
 
             .right {
-              
+                display: flex;
+                justify-content: flex-end;
                 flex: 2;
+                img {
+                        width: 100px;
+                        height: 100px;
+                        object-fit: contain;
+                    }
             }
         }
         hr{

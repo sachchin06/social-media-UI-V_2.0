@@ -1,70 +1,85 @@
 import Image from "../../assets/img.png";
 import Map from "../../assets/map.png";
 import Friend from "../../assets/friend.png";
-import './share.scss';
+import "./share.scss";
 
-import { useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 import { useState } from "react";
 
 import { makeRequest } from "../../axios";
 import axios from "axios";
 
- import {
-   
-   useMutation,
-   useQueryClient,
- } from 'react-query'
+import { useMutation, useQueryClient } from "react-query";
 
 const Share = () => {
-    const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
-    const [file, setFile] = useState(null);
-    const [description, setDescription] = useState("");
+  const [image, setImage] = useState(null);
+  const [description, setDescription] = useState("");
 
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
-// Mutations
-   const mutation = useMutation((newPost) => {
-    return makeRequest.post('/posts', newPost);
-   } , {
-     onSuccess: () => {
-       // Invalidate and refetch
-       queryClient.invalidateQueries(['posts'])
-     },
-   });
-    
-
-    const handleShare = (e) => {
-        e.preventDefault();
-        mutation.mutate({description})
-        console.log(file);
+  // Mutations
+  const mutation = useMutation(
+    (newPost) => {
+      return makeRequest.post("/posts", newPost);
+    },
+    {
+      onSuccess: () => {
+        // Invalidate and refetch
+        queryClient.invalidateQueries(["posts"]);
+      },
     }
+  );
 
-    //axios
-    // const handleShare =async (e) => {
-    //     e.preventDefault();
-       
-    //     await axios.post('http://localhost:8080/api/posts', { description}, {withCredentials: true})
-        
-    // }
+  const uploadImagetoCloud = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("image", image);
+
+      const res = await makeRequest.post("/file/upload", formData);
+      return res.data.imageUrl;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleShare = async (e) => {
+    e.preventDefault();
+    let imageUrl = "";
+
+    if (image) {
+      imageUrl = await uploadImagetoCloud();
+    }
+    mutation.mutate({ description, image: imageUrl });
+    setDescription("");
+    setImage(null);
+  };
+
+  //axios
+  // const handleShare =async (e) => {
+  //     e.preventDefault();
+
+  //     await axios.post('http://localhost:8080/api/posts', { description}, {withCredentials: true})
+
+  // }
 
   return (
-    <div className='share'>
-        <div className="container">
+    <div className="share">
+      <div className="container">
         <div className="top">
           <div className="left">
             <img src={currentUser.profilePic} alt="" />
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}
-            onChange = {(e)=>setDescription(e.target.value)}
+              onChange={(e) => setDescription(e.target.value)}
+              value={description}
             />
           </div>
           <div className="right">
-             
-              <img className="file" alt="" />
-            
+            {image && <img alt="" src={URL.createObjectURL(image)} />}
           </div>
         </div>
         <hr />
@@ -73,7 +88,8 @@ const Share = () => {
             <input
               type="file"
               id="file"
-    onChange={e=>setFile(e.target.files[0])}
+        
+              onChange={(e) => setImage(e.target.files[0])}
             />
             <label htmlFor="file">
               <div className="item">
@@ -81,12 +97,12 @@ const Share = () => {
                 <span>Add Image</span>
               </div>
             </label>
-              
+
             <div className="item">
               <img src={Map} alt="" />
               <span>Add Place</span>
             </div>
-           
+
             <div className="item">
               <img src={Friend} alt="" />
               <span>Tag Friends</span>
@@ -98,7 +114,7 @@ const Share = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Share
+export default Share;

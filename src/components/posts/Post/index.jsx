@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 
 import Comments from "../../comments/Comments";
 import { useState } from "react";
+import moment from 'moment';
 
 const Post = ({ post }) => {
 
@@ -34,7 +35,7 @@ const Post = ({ post }) => {
                 <span>{post.name}</span>
               </div>
             </Link>
-            <span>posted few min ago</span>
+            <span>{moment(post.createdAt).fromNow()}</span>
           </div>
 
           <MoreHorizIcon />
