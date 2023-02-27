@@ -14,7 +14,10 @@ const Post = ({ post }) => {
 
   const [commentOpen, setCommentOpen] = useState(false);
 
-  const liked = false;
+  const [liked, setLiked] = useState(false);
+  // const liked = true;
+
+  
 
   return (
     <div className="post">
@@ -37,13 +40,13 @@ const Post = ({ post }) => {
           <MoreHorizIcon />
         </div>
         <div className="content">
-           <p>{post.desc}</p>
-          {post.img ? <img src={post.img} alt="post" /> : ""}
+           <p>{post.description}</p>
+          {post.image ? <img src={post.image} alt="post" /> : ""}
          
         </div>
         <div className="action">
           <div className="item">
-           { liked ? <FavoriteOutlinedIcon /> : <FavoriteBorderOutlinedIcon />}
+           { liked ? <FavoriteOutlinedIcon onClick={() => setLiked(!liked)} /> : <FavoriteBorderOutlinedIcon onClick={() => setLiked(!liked)} />}
            12 Likes
            
           </div>

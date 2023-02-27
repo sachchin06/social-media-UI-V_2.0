@@ -9,12 +9,15 @@ import {
 import './layout.scss';
 import { useContext } from "react";
 import { DarkModeContext } from "../context/darkModeContext";
+ import { QueryClient, QueryClientProvider } from 'react-query'
 
 const Layout = () => {
 const {darkMode} = useContext(DarkModeContext);
 // console.log(darkMode);
+const queryClient = new QueryClient();
 
     return (
+      <QueryClientProvider client={queryClient}>
       <div className={`layout theme-${darkMode ? 'dark' : 'light'}`} >
         <Navbar />
         <div style={{ display: "flex" }}>
@@ -23,6 +26,7 @@ const {darkMode} = useContext(DarkModeContext);
           <RightBar />
         </div>
       </div>
+      </QueryClientProvider>
     );
   };
 

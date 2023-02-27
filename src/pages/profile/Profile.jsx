@@ -1,27 +1,32 @@
 import "./profile.scss";
 
 import Posts from "../../components/posts/Posts";
+import { useContext } from "react";
+import { AuthContext } from "../../context/authContext";
 
 const Profile = () => {
+
+  const { currentUser } = useContext(AuthContext);
+
   return (
     <div className="profile">
       <div className="images">
         <img
           className="cover"
-          src="https://images.pexels.com/photos/733767/pexels-photo-733767.jpeg?auto=compress&cs=tinysrgb&w=600"
+          src={currentUser.coverPic}
           alt="cover"
         />
         <img
           className="profilePic"
-          src="https://images.pexels.com/photos/2918513/pexels-photo-2918513.jpeg?auto=compress&cs=tinysrgb&w=600"
+          src={currentUser.profilePic}
           alt="profile"
         />
       </div>
       <div className="info">
-        <span>Sachchin Ram</span>
+        <span>{currentUser.username}</span>
         <div className="address">
-          <span>colombo | </span>
-          <span>Sri Lanka</span>
+          {/* <span>colombo | </span> */}
+          <span>{currentUser.address}</span>
         </div>
         <div className="follow">
           <button>

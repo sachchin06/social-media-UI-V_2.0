@@ -1,14 +1,37 @@
 import './login.scss';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { AuthContext } from '../../context/authContext';
-import { useContext } from 'react';
+import { useContext, useRef, useState } from 'react';
+
 
 const Login = () => {
 const { login } = useContext(AuthContext);
+const usernameRef = useRef();
+const passwordRef = useRef();
 
-const handleLogin = () => {
-  login();
+const [err, setErr] = useState(null);
+const navigate = useNavigate();
+
+const handleLogin = async (event) => {
+    event.preventDefault();
+
+    const usernameValue = usernameRef.current.value;
+    const passwordValue = passwordRef.current.value;
+
+    const user = {
+      username: usernameValue,
+      password: passwordValue,
+    };
+
+    try {
+       await login(user);
+       navigate('/');
+    } catch (error) {
+      setErr(error);
+    }
+  
 }
+
 
   return (
     <div className='login'>
@@ -23,10 +46,10 @@ const handleLogin = () => {
         </div>
         <div className="right">
           <h1>Login</h1>
-          <form>
-            <input type="text" placeholder='Username' />
-            <input type="password" placeholder='Password' />
-            <button onClick={handleLogin}>Login</button>
+          <form onSubmit={handleLogin}>
+            <input type="text" ref={usernameRef} placeholder='Username' />
+            <input type="password" ref={passwordRef} placeholder='Password' />
+            <button>Login</button>
           </form>
         </div>
       </div>
