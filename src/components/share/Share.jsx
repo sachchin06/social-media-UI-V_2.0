@@ -21,6 +21,7 @@ const Share = () => {
   // Mutations
   const mutation = useMutation(
     (newPost) => {
+      
       return makeRequest.post("/posts", newPost);
     },
     {
@@ -35,7 +36,6 @@ const Share = () => {
     try {
       const formData = new FormData();
       formData.append("image", image);
-
       const res = await makeRequest.post("/file/upload", formData);
       return res.data.imageUrl;
     } catch (error) {

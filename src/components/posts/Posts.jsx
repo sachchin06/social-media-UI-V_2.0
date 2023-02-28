@@ -29,6 +29,7 @@ const Posts = () => {
     })
   );
 
+
   return (
     <div className="posts">
       <Share />
@@ -36,7 +37,7 @@ const Posts = () => {
         ? "Something Went Wrong"
         : isLoading
         ? "loading"
-        : data.map((post) => <Post post={post} key={post.id} />)}
+        : data.length ? data.map((post) => <Post post={post} key={post.id} />) : <h1 style={{ margin: '20px'}}>No Posts Yet</h1>}
     </div>
   );
 };

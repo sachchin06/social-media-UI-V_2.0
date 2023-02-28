@@ -12,7 +12,7 @@ const Comments = ({ postId }) => {
   const newCommentRef  = useRef()
   const queryClient = useQueryClient();
 
-  const { isLoading, error, data } = useQuery(["comments"], () =>
+  const { isLoading, error, data } = useQuery(["comments", postId], () =>
     makeRequest.get(`/comments/${postId}`).then((res) => {
       return res.data;
     })
@@ -34,7 +34,7 @@ const Comments = ({ postId }) => {
     {
       onSuccess: () => {
         // Invalidate and refetch
-        queryClient.invalidateQueries(["comments"]);
+        queryClient.invalidateQueries(["comments", postId]);
       },
     }
   );
