@@ -46,6 +46,12 @@
     justify-content: flex-end;
     gap: 5px;
 
+    .editBtn {
+      cursor: pointer;
+      font-size: 20px;
+    }
+    
+
     .address {
       span {
         font-size: 12px;
@@ -60,6 +66,7 @@
       padding: 4px 8px;
       font-weight: 500;
       background-color: #5271ff;
+      cursor: pointer;
     }
   }
 

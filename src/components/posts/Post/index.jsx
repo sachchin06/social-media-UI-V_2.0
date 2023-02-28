@@ -21,7 +21,6 @@ const Post = ({ post }) => {
 
   const {
     isLoading: isLikesLoding,
-    error: likesErr,
     data: likes,
   } = useQuery(["likes", post.id], () =>
     makeRequest.get(`/likes?postId=${post.id}`).then((res) => {
@@ -31,7 +30,6 @@ const Post = ({ post }) => {
 
   const {
     isLoading: isCommentLoading,
-    error: commentsErr,
     data: comments,
   } = useQuery(["getComments", post.id], () =>
     makeRequest.get(`/comments/${post.id}`).then((res) => {
