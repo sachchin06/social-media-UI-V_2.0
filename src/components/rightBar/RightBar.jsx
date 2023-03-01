@@ -1,9 +1,14 @@
+import { useState } from "react";
 import "./rightBar.scss";
 
 const RightBar = () => {
+  ;
+
   return (
     <div className="rightBar">
       <div className="container">
+
+      
         {/* Suggestions For You Section */}
         <div className="item">
           <span>Suggestions For You</span>

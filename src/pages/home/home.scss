@@ -7,6 +7,14 @@
     @include mobile {
             padding: 5px;
         }
-  
+
+        .stories {
+            position: sticky;
+                top: 60px;
+                background-color: white;
+                z-index: 1200;
+                border-radius: 10px;
+        }
+        
    
 }

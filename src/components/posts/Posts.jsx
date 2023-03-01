@@ -29,15 +29,19 @@ const Posts = () => {
     })
   );
 
-// console.log(data);
+  // console.log(data);
   return (
     <div className="posts">
       <Share />
-      {error
-        ? "Something Went Wrong"
-        : isLoading
-        ? "loading"
-        : data.length ? data.map((post) => <Post post={post} key={post.id} />) : <h1 style={{ margin: '20px'}}>No Posts Yet</h1>}
+      {error ? (
+        "Something Went Wrong"
+      ) : isLoading ? (
+        "loading"
+      ) : data.length ? (
+        data.map((post) => <Post post={post} key={post.id} />)
+      ) : (
+        <h1 style={{ margin: "20px" }}>No Posts Yet</h1>
+      )}
     </div>
   );
 };

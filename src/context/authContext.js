@@ -20,9 +20,10 @@ export const AuthContextProvider = ({ children }) => {
     const res = await axios.post("http://localhost:8080/api/auth/login", user, {
       withCredentials: true,
     });
-    console.log("login", res);
-
+    // console.log("login", res);
     setCurrentUser(res.data);
+
+    return;
   };
 
   useEffect(() => {

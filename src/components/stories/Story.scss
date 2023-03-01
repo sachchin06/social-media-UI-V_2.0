@@ -1,10 +1,18 @@
 @import '../../layout/layout.scss';
 
+
+
 .stories {
-  
+  width: 100%;
+  gap: 8px;
   display: flex;
+  flex-wrap: wrap;
   height: 150px;
-  gap: 5px;
+  justify-content: space-between;
+  overflow-x: auto;
+  flex-direction: column;
+
+    
   // background-color: aquamarine;
  
 @include mobile {
@@ -18,7 +26,7 @@
     }
   .story {
     height: inherit;
-    width: 120px;
+    width: 19%;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
@@ -34,15 +42,32 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0.8;
+      opacity: 0.7;
     }
-    span {
-      font-size: 12px;
+      .storyInfo {
+      font-size: 14px;
       font-weight: 600;
       position: absolute;
       bottom: 12px;
       left: 10px;
-      color: white;
+      
+
+      display: flex;
+        align-items: center;
+        gap: 5px;
+      
+        img {
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      
+        span {
+    
+          color: white;
+         
+        }
 
       @include mobile {
           display: none;
@@ -104,4 +129,6 @@
       }
     }
   }
+
+  
 }

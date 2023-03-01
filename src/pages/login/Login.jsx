@@ -10,7 +10,7 @@ const usernameRef = useRef();
 const passwordRef = useRef();
 
 const [err, setErr] = useState(null);
-const navigate = useNavigate();
+ const navigate = useNavigate();
 
 const handleLogin = async (event) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ const handleLogin = async (event) => {
 
     try {
        await login(user);
-       navigate('/');
+       navigate('/', { replace: true });
     } catch (error) {
       setErr(error);
     }

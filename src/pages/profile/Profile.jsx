@@ -4,11 +4,11 @@ import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 import Posts from "../../components/posts/Posts";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/authContext";
-import EditProfile from "../profile/editProfile/index";
 import { useQuery } from "react-query";
 import { makeRequest } from "../../axios";
 import { useLocation } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
+import EditProfile from '../../components/editProfile/index'
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -32,11 +32,12 @@ const Profile = () => {
       onSuccess: () => {
         //Invalidate and refetch
         queryClient.invalidateQueries(["relationships"]);
+        queryClient.invalidateQueries(["posts"]);
       },
     }
   );
 
-  const { isLoading, error, data } = useQuery(["user"], () =>
+  const { isLoading, error, data: user } = useQuery(["user"], () =>
     makeRequest.get(`/users/find/${userId}`).then((res) => {
       return res.data;
     })
@@ -56,18 +57,18 @@ const Profile = () => {
       ) : (
         <>
           <div className="images">
-            <img className="cover" src={data.coverPic} alt="cover" />
-            <img className="profilePic" src={data.profilePic} alt="profile" />
+            <img className="cover" src={user.coverPic} alt="cover" />
+            <img className="profilePic" src={user.profilePic} alt="profile" />
           </div>
           <div className="info">
-            <span>{data.name}</span>
+            <span>{user.name}</span>
             <div className="address">
-              <span>{data.address}</span>
+              <span>{user.address}</span>
             </div>
 
             {userId === currentUser.id ? (
               !openEditProfile && (
-                <BorderColorOutlinedIcon
+                <BorderColorOutlinedIcon className="editBtn"
                   onClick={() => setopenEditProfile(true)}
                 />
               )
@@ -80,17 +81,19 @@ const Profile = () => {
             )}
           </div>
 
-          {openEditProfile && (
-            <div className="editProfile">
-              <EditProfile setopenEditProfile={setopenEditProfile} />
-            </div>
-          )}
+         
 
           <div className="profilePost">
             <Posts />
           </div>
         </>
       )}
+
+       {openEditProfile && (
+            <div className="update">
+              <EditProfile setopenEditProfile={setopenEditProfile} user={user} />
+            </div>
+          )}
     </div>
   );
 };

@@ -1,68 +1,47 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
-import './Story.scss';
+import { useContext, useState } from "react";
+import { AuthContext } from "../../context/authContext";
+import "./Story.scss";
+import { useQuery } from "react-query";
+import { makeRequest } from "../../axios.js";
+import UploadStory from "../uploadStory";
 
 const Stories = () => {
+  const { currentUser } = useContext(AuthContext);
+  const [openUpload, setOpenUpload] = useState(false);
 
-    const { currentUser } = useContext(AuthContext);
-    //dummy data
-    const stories = [
-        {
-            id: 1,
-            name: "Sachchin Ram",
-            img: "https://images.pexels.com/photos/7414102/pexels-photo-7414102.jpeg?auto=compress&cs=tinysrgb&w=600"
-        },
-        {
-            id: 2,
-            name: "Sachchin Ram",
-            img: "https://images.pexels.com/photos/7414102/pexels-photo-7414102.jpeg?auto=compress&cs=tinysrgb&w=600"
-        },
-        {
-            id: 3,
-            name: "Sachchin Ram",
-            img: "https://images.pexels.com/photos/7414102/pexels-photo-7414102.jpeg?auto=compress&cs=tinysrgb&w=600"
-        },
-        {
-            id: 4,
-            name: "Sachchin Ram",
-            img: "https://images.pexels.com/photos/7414102/pexels-photo-7414102.jpeg?auto=compress&cs=tinysrgb&w=600"
-        },
-        // {
-        //     id: 1,
-        //     name: "Sachchin Ram",
-        //     img: "https://images.pexels.com/photos/7414102/pexels-photo-7414102.jpeg?auto=compress&cs=tinysrgb&w=600"
-        // },
-        // {
-        //     id: 1,
-        //     name: "Sachchin Ram",
-        //     img: "https://images.pexels.com/photos/7414102/pexels-photo-7414102.jpeg?auto=compress&cs=tinysrgb&w=600"
-        // },
-        // {
-        //     id: 1,
-        //     name: "Sachchin Ram",
-        //     img: "https://images.pexels.com/photos/7414102/pexels-photo-7414102.jpeg?auto=compress&cs=tinysrgb&w=600"
-        // },
-    ]
+  const { isLoading, data: stories } = useQuery(["stories"], () =>
+    makeRequest.get("/stories").then((res) => res.data)
+  );
+
+  // console.log(stories);
+
   return (
-    <div className='stories'>
+    <div className="stories">
+      {!openUpload && (
         <div className="story">
-                    <img src={currentUser.profilePic} alt="story" />
-                    <div className="button-container">
-                        <button>
-                            <span>+</span>
-                        </button>
-                    </div>
-                </div>
-        {
-            stories.map((story) => (
-                <div key={story.id} className="story">
-                    <img src={story.img} alt="story" />
-                    <span>{story.name}</span>
-                </div>
-            ) )
-        }
+          <img src={currentUser.profilePic} alt="story" />
+          <div className="button-container">
+            <button onClick={() => setOpenUpload(true)}>
+              <span>+</span>
+            </button>
+          </div>
+        </div>
+      )}
+      {openUpload && (
+        <UploadStory setOpenUpload={setOpenUpload} />
+      )}
+      {!isLoading &&
+        stories.map((story) => (
+          <div key={story.id} className="story">
+            <img src={story.image} alt="story" />
+            <div className="storyInfo">
+              <img src={story.profilePic} alt="story user" />
+              <span>{story.name}</span>
+            </div>
+          </div>
+        ))}
     </div>
-  )
-}
+  );
+};
 
-export default Stories
+export default Stories;
