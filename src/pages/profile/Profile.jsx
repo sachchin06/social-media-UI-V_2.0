@@ -84,7 +84,7 @@ const Profile = () => {
          
 
           <div className="profilePost">
-            <Posts />
+            <Posts userId={userId} />
           </div>
         </>
       )}

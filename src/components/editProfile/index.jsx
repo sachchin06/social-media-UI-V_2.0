@@ -35,15 +35,16 @@ const EditProfile = ({ setopenEditProfile, user }) => {
     coverUrl = cover ? await updateImage(cover) : user.coverPic;
     profileUrl = profile ? await updateImage(profile) : user.profilePic;
 
-    // console.log({ ...texts, coverPic: coverUrl, profilePic: profileUrl });
+    
     mutation.mutate({ ...texts, coverPic: coverUrl, profilePic: profileUrl })
+    // mutation.mutate({ ...texts })
     setopenEditProfile(false);
   }
 
   const updateImage = async (file) => {
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("image", file);
       const res = await makeRequest.post("/file/upload", formData);
       return res.data.imageUrl;
     } catch (error) {

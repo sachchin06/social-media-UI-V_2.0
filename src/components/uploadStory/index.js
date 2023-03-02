@@ -9,31 +9,29 @@ import { useMutation, useQueryClient } from "react-query";
 const UploadStory = ({ setOpenUpload }) => {
   const { currentUser } = useContext(AuthContext);
   const [file, setFile] = useState(null);
-  const queryClient =  useQueryClient();
+  const queryClient = useQueryClient();
 
   const mutation = useMutation(
-    (newStory)=> {
-        return makeRequest.post('/stories', newStory);
-  },
-  {
-    onSuccess: () => {
-        queryClient.invalidateQueries(['stories']);
+    (newStory) => {
+      return makeRequest.post("/stories", newStory);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["stories"]);
+      },
     }
-  }
   );
 
   const handleShare = async (e) => {
     e.preventDefault();
     let imageUrl = "";
-    if(file) {
-         imageUrl = await uploadImageToCloud();
-       
+    if (file) {
+      imageUrl = await uploadImageToCloud();
     }
 
     // console.log({ image: imageUrl});
-    mutation.mutate({ image: imageUrl});
+    mutation.mutate({ image: imageUrl });
     setFile(null);
-   
   };
 
   const uploadImageToCloud = async () => {
@@ -41,8 +39,7 @@ const UploadStory = ({ setOpenUpload }) => {
       const formData = new FormData();
       formData.append("image", file);
       const res = await makeRequest.post("/file/upload", formData);
-      return res.data.imageUrl
-
+      return res.data.imageUrl;
     } catch (error) {
       console.log(error);
     }
