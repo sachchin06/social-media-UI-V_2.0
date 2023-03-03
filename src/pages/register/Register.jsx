@@ -13,6 +13,13 @@ const Register = () => {
   const [err, setErr] = useState(null);
   const [success, setSuccess] = useState("");
 
+  const resetForm = () => {
+  nameRef.current.value = "";
+    emailRef.current.value = "";
+    usernameRef.current.value = "";
+    passwordRef.current.value = "";
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -31,6 +38,7 @@ const Register = () => {
     try {
       // console.log(user);
       await axios.post("http://localhost:8080/api/auth/register", user);
+      resetForm();
       setSuccess("Sucessfully Registered...");
     } catch (error) {
       setErr(error.response.data);

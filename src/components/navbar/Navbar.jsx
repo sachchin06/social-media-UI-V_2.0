@@ -7,6 +7,7 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import logo from '../../assets/logo.png';
 
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -21,15 +22,21 @@ const Navbar = () => {
     <div className="navbar">
       <div className="left">
         <Link style={{ textDecoration: "none" }} to="/">
-          <span>Logo</span>
+          <div className="logo">
+            <img src={logo} alt="logo" />
+          {/* <span>Media</span> */}
+          </div>
         </Link>
-        <HomeOutlinedIcon />
+
+        <Link style={{ textDecoration: "none" }} to="/">
+        <HomeOutlinedIcon style={{cursor: 'pointer'}} />
+        </Link>
         {darkMode ? (
-          <WbSunnyOutlinedIcon onClick={toggle} />
+          <WbSunnyOutlinedIcon  onClick={toggle} style={{cursor: 'pointer'}} />
         ) : (
-          <DarkModeOutlinedIcon onClick={toggle} />
+          <DarkModeOutlinedIcon onClick={toggle} style={{cursor: 'pointer'}} />
         )}
-        <GridViewOutlinedIcon />
+        <GridViewOutlinedIcon style={{cursor: 'pointer'}} />
         <div className="search">
           <SearchOutlinedIcon />
           <input type="test" placeholder="Serach.." />

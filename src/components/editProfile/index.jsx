@@ -8,8 +8,10 @@ const EditProfile = ({ setopenEditProfile, user }) => {
   const [cover, setCover] = useState(null);
   const [profile, setProfile] = useState(null);
   const [texts, setTexts] = useState({
-    name: user.name,
-    email: user.email,
+    name: "",
+    email: "",
+    city: "",
+    country: ""
   });
 
   const queryClient = useQueryClient();
@@ -98,18 +100,40 @@ const EditProfile = ({ setopenEditProfile, user }) => {
             <div className="item">
               <label htmlFor="email">Email : </label>
               <input
-                value={user.email}
+                value={texts.email ? texts.email : user.email}
+                placeholder="example@gmail.com"
                 type="text"
                 name="email"
                 onChange={handleChange}
               />
             </div>
             <div className="item">
-              <label htmlFor="email">Display Name: </label>
+              <label htmlFor="name">Display Name: </label>
               <input
-                value={user.name}
+                value={ texts.name ? texts.name : user.name}
+                 placeholder="display name"
                 type="text"
                 name="name"
+                onChange={handleChange}
+              />
+            </div>
+             <div className="item">
+              <label htmlFor="city">City: </label>
+              <input
+                value={texts.city ? texts.city : user.city}
+                type="text"
+                 placeholder="colombo"
+                name="city"
+                onChange={handleChange}
+              />
+            </div>
+             <div className="item">
+              <label htmlFor="country">Country: </label>
+              <input
+                value={texts.country ? texts.country : user.country}
+                type="text"
+                name="country"
+                 placeholder="Sri Lanka"
                 onChange={handleChange}
               />
             </div>

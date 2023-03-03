@@ -32,6 +32,7 @@ const UploadStory = ({ setOpenUpload }) => {
     // console.log({ image: imageUrl});
     mutation.mutate({ image: imageUrl });
     setFile(null);
+    setOpenUpload(false);
   };
 
   const uploadImageToCloud = async () => {

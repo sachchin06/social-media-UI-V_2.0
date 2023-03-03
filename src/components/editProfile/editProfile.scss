@@ -21,6 +21,10 @@
     position: absolute;
     top: 0;
     right: 0;
+    color: white;
+    background-color: rgb(248, 82, 82);
+    border: none;
+   cursor: pointer;
   }
 
   form {
@@ -106,6 +110,18 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+
+      button {
+       
+            align-items: center;
+            padding: 6px 8px;
+            background-color: #5271ff;
+            border-radius: 3px;
+            color: white;
+            outline: none;
+            border: none;
+            cursor: pointer;
+      }
     }
   }
 }

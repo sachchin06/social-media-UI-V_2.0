@@ -3,6 +3,7 @@ import Post from "./Post";
 import { useQuery } from "react-query";
 import { makeRequest } from "../../axios";
 import Share from "../share/Share";
+import { useEffect } from "react";
 
 const Posts = ({ userId }) => {
  
@@ -18,6 +19,9 @@ const Posts = ({ userId }) => {
     })
   );
 
+    useEffect(() => {
+  window.scrollTo(0,0)
+},[])
   // console.log(data);
   return (
     <div className="posts">

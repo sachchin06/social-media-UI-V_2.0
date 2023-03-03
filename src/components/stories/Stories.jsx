@@ -4,6 +4,7 @@ import "./Story.scss";
 import { useQuery } from "react-query";
 import { makeRequest } from "../../axios.js";
 import UploadStory from "../uploadStory";
+import { Link } from "react-router-dom";
 
 const Stories = () => {
   const { currentUser } = useContext(AuthContext);
@@ -19,7 +20,16 @@ const Stories = () => {
     <div className="stories">
       {!openUpload && (
         <div className="story">
-          <img src={currentUser.profilePic} alt="story" />
+          <Link
+            to={`/profile/${currentUser.id}`}
+            style={{
+              cursor: "pointer",
+              textDecoration: "none",
+              color: "inherit",
+            }}
+          >
+            <img src={currentUser.profilePic} alt="story" />
+          </Link>
           <div className="button-container">
             <button onClick={() => setOpenUpload(true)}>
               <span>+</span>
@@ -27,17 +37,24 @@ const Stories = () => {
           </div>
         </div>
       )}
-      {openUpload && (
-        <UploadStory setOpenUpload={setOpenUpload} />
-      )}
+      {openUpload && <UploadStory setOpenUpload={setOpenUpload} />}
       {!isLoading &&
         stories.map((story) => (
           <div key={story.id} className="story">
             <img src={story.image} alt="story" />
-            <div className="storyInfo">
-              <img src={story.profilePic} alt="story user" />
-              <span>{story.name}</span>
-            </div>
+            <Link
+              to={`/profile/${story.userId}`}
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <div className="storyInfo">
+                <img src={story.profilePic} alt="story user" />
+                <span>{story.name}</span>
+              </div>
+            </Link>
           </div>
         ))}
     </div>

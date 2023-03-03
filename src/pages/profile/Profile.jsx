@@ -2,7 +2,7 @@ import "./profile.scss";
 import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
 
 import Posts from "../../components/posts/Posts";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useQuery } from "react-query";
 import { makeRequest } from "../../axios";
@@ -15,6 +15,10 @@ const Profile = () => {
   const [openEditProfile, setopenEditProfile] = useState(false);
   const userId = parseInt(useLocation().pathname.split("/")[2]);
   const queryClient = useQueryClient();
+
+  useEffect(() => {
+  window.scrollTo(0,0)
+},[])
 
  
  const handleFollow = () => {
@@ -50,7 +54,7 @@ const Profile = () => {
   );
 
 
-  console.log(user);
+  // console.log(user);
   return (
     <div className="profile">
       {isLoading ? (

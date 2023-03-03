@@ -6,7 +6,7 @@ import "./share.scss";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 import { makeRequest } from "../../axios";
 import { useMutation, useQueryClient } from "react-query";
 
@@ -21,7 +21,6 @@ const Share = () => {
   // Mutations
   const mutation = useMutation(
     (newPost) => {
-      
       return makeRequest.post("/posts", newPost);
     },
     {
@@ -68,7 +67,16 @@ const Share = () => {
       <div className="container">
         <div className="top">
           <div className="left">
-            <img src={currentUser.profilePic} alt="" />
+            <Link
+              to={`/profile/${currentUser.id}`}
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <img src={currentUser.profilePic} alt="" />
+            </Link>
             <input
               type="text"
               placeholder={`What's on your mind ${currentUser.name}?`}
@@ -86,7 +94,6 @@ const Share = () => {
             <input
               type="file"
               id="file"
-        
               onChange={(e) => setImage(e.target.files[0])}
             />
             <label htmlFor="file">

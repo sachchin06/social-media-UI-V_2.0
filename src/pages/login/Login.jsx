@@ -12,6 +12,11 @@ const passwordRef = useRef();
 const [err, setErr] = useState(null);
  const navigate = useNavigate();
 
+ const resetForm = () => {
+    usernameRef.current.value = "";
+    passwordRef.current.value = "";
+  }
+
 const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -25,6 +30,7 @@ const handleLogin = async (event) => {
 
     try {
        await login(user);
+       resetForm();
        navigate('/', { replace: true });
     } catch (error) {
       setErr(error);
@@ -48,7 +54,7 @@ const handleLogin = async (event) => {
           <h1>Login</h1>
           <form onSubmit={handleLogin}>
             <input type="text" ref={usernameRef} placeholder='Username' />
-            <input type="password" ref={passwordRef} placeholder='Password' />
+            <input type="password" ref={passwordRef}  placeholder='Password' />
             <button>Login</button>
           </form>
 
