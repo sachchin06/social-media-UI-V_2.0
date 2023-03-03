@@ -22,8 +22,6 @@ export const AuthContextProvider = ({ children }) => {
     });
     // console.log("login", res);
     setCurrentUser(res.data);
-
-    return;
   };
 
   useEffect(() => {
@@ -31,7 +29,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser, login }}>
+    <AuthContext.Provider value={{ currentUser, setCurrentUser, login }}>
       {children}
     </AuthContext.Provider>
   );

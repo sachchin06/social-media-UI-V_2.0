@@ -11,9 +11,11 @@ const Register = () => {
   const passwordRef = useRef();
 
   const [err, setErr] = useState(null);
+  const [success, setSuccess] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const nameValue = nameRef.current.value;
     const emailValue = emailRef.current.value;
     const usernameValue = usernameRef.current.value;
@@ -27,26 +29,42 @@ const Register = () => {
     };
 
     try {
-      console.log(user);
+      // console.log(user);
       await axios.post("http://localhost:8080/api/auth/register", user);
+      setSuccess("Sucessfully Registered...");
     } catch (error) {
       setErr(error.response.data);
     }
   };
 
-  console.log(err);
   return (
     <div className="register">
       <div className="card">
         <div className="left">
           <h1>Register</h1>
           <form onSubmit={handleSubmit}>
-            <input type="text" ref={nameRef} placeholder="Display Name" />
-            <input type="email" ref={emailRef} placeholder="Email" />
-            <input type="text" ref={usernameRef} placeholder="Username" />
-           <input type="password" ref={passwordRef} placeholder="Password" />
+            <input
+              type="text"
+              ref={nameRef}
+              placeholder="Display Name"
+            />
+            <input
+              type="email"
+              ref={emailRef}
+              placeholder="Email"
+            />
+            <input
+              type="text"
+              ref={usernameRef}
+              placeholder="Username"
+            />
+            <input
+              type="password"
+              ref={passwordRef}
+              placeholder="Password"
+            />
             <button>Register</button>
-
+            {success !==" " && success}
             {err && err}
           </form>
         </div>
