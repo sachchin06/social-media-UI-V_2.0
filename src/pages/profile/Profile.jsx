@@ -50,6 +50,7 @@ const Profile = () => {
   );
 
 
+  console.log(user);
   return (
     <div className="profile">
       {isLoading ? (
@@ -63,7 +64,8 @@ const Profile = () => {
           <div className="info">
             <span>{user.name}</span>
             <div className="address">
-              <span>{user.address}</span>
+              <span>{user.city} | </span>
+                <span>{user.country}</span>
             </div>
 
             {userId === currentUser.id ? (
